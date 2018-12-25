@@ -1,3 +1,5 @@
+[![PyPI version](https://badge.fury.io/py/convert2utf.svg)](https://badge.fury.io/py/convert2utf)
+
 # Converts text files or source code files into UTF-8 encoding
 
 This lightweight tool converts text files encoded in non-UTF (such as GB2312, GBK, BIG5) to UTF-8 encoded files. 
