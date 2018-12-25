@@ -1,4 +1,5 @@
 [![PyPI version](https://img.shields.io/pypi/v/convert2utf.svg)](https://pypi.python.org/pypi/convert2utf/)
+[![Supported Python version](https://img.shields.io/pypi/pyversions/convert2utf.svg)](https://pypi.python.org/pypi/convert2utf/)
 [![PyPI implementation](https://img.shields.io/pypi/implementation/convert2utf.svg)](https://pypi.python.org/pypi/convert2utf/)
 
 
