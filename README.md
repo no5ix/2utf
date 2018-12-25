@@ -1,4 +1,6 @@
-[![PyPI version](https://badge.fury.io/py/convert2utf.svg)](https://badge.fury.io/py/convert2utf)
+[![PyPI version](https://img.shields.io/pypi/v/convert2utf.svg)](https://pypi.python.org/pypi/convert2utf/)
+[![PyPI implementation](https://img.shields.io/pypi/implementation/convert2utf.svg)](https://pypi.python.org/pypi/convert2utf/)
+
 
 # Converts text files or source code files into UTF-8 encoding
 
