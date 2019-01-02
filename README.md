@@ -100,14 +100,12 @@ Below is a list of places where BOM might cause a problem. To make your life eas
 
 #### 1.2 When should we add BOM?
 BOMs in these files are not necessary, but it is recommended to add them.
+
 * __Source Code in Visual Studio Projects__: 
-
     It is recommended in MSDN that "Always prefix a Unicode plain text file with a byte order mark" [Link](https://msdn.microsoft.com/en-us/library/windows/desktop/dd374101(v=vs.85).aspx). 
-
     Visual Studio may mandate BOM in source files. If BOMs are missing, then Visual Studio may not be able to compile them.
 
 * __CSV__: 
-
     BOMs in CSV files might be useful and necessary, especially if it is opened by Excel.
 
 ### 2. About Unicode
