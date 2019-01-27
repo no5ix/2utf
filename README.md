@@ -13,7 +13,7 @@ It can either be executed from command line interface(a.k.a "CLI" or "console"),
 
 There is only one mandatory argument: filename, where you can specify the directory or file name.  
 
-`-d` to point to the file or directory. If u don't `-d`, it will point to the directory where `2utf` is placed.
+`-d` for pointing to the file or directory. If u don't `-d`, it will point to the directory where `2utf` is placed.
 
 * ___Directory mode___: You should put in a directory as the input, and all text files that meets the criteria underneath it will be converted to UTF-8.
 * ___Single file mode___: If the input argument is just an individual file, it would be straightforwardly converted to UTF-8. 
