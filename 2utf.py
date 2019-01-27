@@ -8,7 +8,8 @@ import shutil
 
 
 DEFAULT_CONF = {
-    'check_ext' : ['cpp', 'h', 'uproject', 'cs'],
+    'check_ext': ['cpp', 'h', 'uproject', 'cs'],
+    'exclude_dir_name': ['.git', '.idea', '.vs'],
     # 'size_limit': 100 * 1024 ** 2,  # if the file is larger than this size limit, we could skip it. default 100MB
     'codec_chain': ['ascii', 'utf_8_sig', 'chardet'],
     # We will try elements in this list sequentially.
@@ -141,9 +142,17 @@ def cvt_codec_main(args):
             convert_file(cur_check_path, args)
 
 def walk_dir(base, args):
+    ex_dir_name_list = DEFAULT_CONF['exclude_dir_name']
+    ex_dir_name_list.append(DEFAULT_CONF['bak_dir_name_prefix'])
     for root, dirs, files in os.walk(base):
+        should_skip = False
+        for ex_dir_name in ex_dir_name_list:
+            if root.find(ex_dir_name) != -1:
+                should_skip = True
+                break
+        if should_skip:
+            continue
         for name in files:
-
             extension = os.path.splitext(name)[1][1:].strip().lower()
             if extension in DEFAULT_CONF['check_ext']:
                 fullname = os.path.join(root, name)
@@ -184,7 +193,7 @@ def convert_file(filename, args):
     if not args.no_bak:
         file_name_tuple = os.path.split(filename)
         new_dir_name = './' + DEFAULT_CONF['bak_dir_name_prefix'] +\
-                       str(time.strftime("%Y_%m_%d__%H_%M_%S")) +\
+                       str(time.strftime("%Y_%m_%d__%H_%M_%S")) + '_' + str(int(time.time())) +\
                        '/' + file_name_tuple[0].replace('./', '')
         new_dir_file_name = new_dir_name + '/' + file_name_tuple[1].replace('/./', '/')
         if not os.path.exists(new_dir_name):
