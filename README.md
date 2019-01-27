@@ -5,7 +5,7 @@ It can either be executed from command line interface(a.k.a "CLI" or "console"),
 
 ## New Features
 
-- more easier to use
+- easy to use
 - support py2
 - has a individual bak folder named with time info
     
