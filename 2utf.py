@@ -34,19 +34,12 @@ def cli():
             '''),
     )
 
-    # subparsers = parser.add_subparsers(dest='cmd')
-    #
-    # cvt_parser = subparsers.add_parser('convert', help=textwrap.dedent('''
-    #         The main command that converts {DEFAULT_CONF['check_ext']} files into UTF8-encoded ones.
-    #         '''))
-
     cvt_parser.set_defaults(func=cvt_codec_main)
 
     cvt_parser.add_argument(
         '-d',
         '--dir',
         dest='check_dir',
-        # action='store_true',
         default=DEFAULT_CONF['check_dir'],
         help=textwrap.dedent('''
             The path pointing to the file or directory.
@@ -100,20 +93,9 @@ def cli():
     )
 
     args = cvt_parser.parse_args()
-
-    # if args.cmd is None:
-    #     import sys
-    #     args = cvt_parser.parse_args(['convert'] + sys.argv[1:])
-
     args.func(args)
 
 def clean_bak_main(cur_check_dir):
-    # # base = args.base
-    # base = args.check_dir
-    #
-    # if not os.path.exists(base):
-    #     return
-
     if not os.path.isdir(cur_check_dir):
         print "The " + cur_check_dir + " is not a directory"
         return

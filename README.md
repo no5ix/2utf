@@ -1,7 +1,6 @@
 # Converts text files or source code files into UTF-8 encoding
 
-This lightweight tool converts text files encoded in non-UTF (such as GB2312, GBK, BIG5) to UTF-8 encoded files. 
-It can either be executed from command line interface(a.k.a "CLI" or "console"), or imported into other Python code.
+This lightweight tool converts text files encoded in non-UTF (such as GB2312, GBK, BIG5) to UTF-8 or other encoding. 
 
 ## New Features
 
@@ -48,24 +47,10 @@ ___Examples:___
 
     `python 2utf.py -h`
 
+* By default, the converted output text files will __NOT__ contain BOM (byte order mark). However, you can use the switch `-b` or `--addbom` to explicitly include BOM in the output text files. 
 
-## Usage Note
+    `python 2utf.py -b`
 
-### 1. About BOM
-
-By default, the converted output text files will __NOT__ contain BOM (byte order mark). 
-
-However, you can use the switch `-b` or `--addbom` to explicitly include BOM in the output text files. 
-
-### 2. About file extensions
-
-You should only feed text-like files to `2utf`, while binary files (such as .exe files) **should be** left untouched. 
-However, how to distinguish? Well, we use extension names. By default, files with the extension `txt` will be processed.
-Feel free to customize this list either through editing the source code or with command line arguments.
-
-### 3. About file size limits
-
-We will ignore empty files. Also, we ignore files larger than 10MB. This is a reasonable limit. If you really wants to change it, feel free to do so.
 
 ## Trivial knowledge
 
