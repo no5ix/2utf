@@ -1,4 +1,4 @@
-# Converts text files or source code files into UTF-8 encoding
+# Converts text files or source code files into UTF-8 or other encoding
 
 This lightweight tool converts text files encoded in non-UTF (such as GB2312, GBK, BIG5) to UTF-8 or other encoding. 
 
@@ -51,6 +51,21 @@ ___Examples:___
 
     `python 2utf.py -b`
 
+## Usage Note
+
+### 1. About 2utf config
+
+check `DEFAULT_CONF` in `2utf.py`
+
+### 2. About file extensions
+
+You should only feed text-like files to `2utf`, while binary files (such as .exe files) **should be** left untouched. 
+However, how to distinguish? Well, we use extension names. By default, files with these extension(see DEFAULT_CONF[`check_ext`] in `2utf.py`) will be processed.
+Feel free to customize this list either through editing the source code or with command line arguments.
+
+### 3. About file size limits
+
+We will ignore empty files. Also, we ignore files larger than 666MB. This is a reasonable limit. If you really wants to modify it, feel free to do so(see DEFAULT_CONF[`size_limit`] in `2utf.py`).
 
 ## Trivial knowledge
 
@@ -77,7 +92,6 @@ BOMs in these files are not necessary, but it is recommended to add them.
 ### 2. About Unicode
 * [其实你并不懂 Unicode by 纤夫张](https://zhuanlan.zhihu.com/p/53714077)
 * [UTF-8 编码及检查其完整性](https://juejin.im/post/5c3ff87f6fb9a049c15f7db0)
-
 
 ## FAQ
 

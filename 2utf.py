@@ -8,8 +8,9 @@ import shutil
 
 
 DEFAULT_CONF = {
-    'check_ext': ['cpp', 'h', 'uproject', 'cs'],
-    'exclude_dir_name': ['.git', '.idea', '.vs'],
+    'check_ext': ['txt', 'h', 'cpp'],  # files with these extension will be processed.
+    'exclude_dir_name': ['.git', '.idea', '.vs'],  # will skip these dir
+    'size_limit': 666 * 1024 ** 2,  # if the file is larger than this size limit, we could skip it. default 666MB
     'codec_chain': ['ascii', 'utf_8_sig', 'chardet'],
     # We will try elements in this list sequentially.
     # If the element is `chardet` we will obtain the result from chardet.
@@ -145,12 +146,9 @@ def walk_dir(base, args):
                     exit()
 
 def convert_file(filename, args):
-
-    # 'size_limit': 100 * 1024 ** 2,  # if the file is larger than this size limit, we could skip it. default 100MB
-    # size = os.path.getsize(filename)
-    #
-    # if size == 0 or size > DEFAULT_CONF['size_limit']:
-    #     return
+    size = os.path.getsize(filename)
+    if size == 0 or size > DEFAULT_CONF['size_limit']:
+        return
 
     with open(filename, 'rb') as f:  # read under the binary mode
         file_bytes = f.read()
