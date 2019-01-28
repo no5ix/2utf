@@ -22,8 +22,7 @@ ___Examples:___
 
 * Changes all .txt files to UTF-8 encoding. Additionally, **removes BOMs** from utf_8_sig-encoded files: 
 
-    `python 2utf.py`  
-    `python 2utf.py -d "/path/to/your/repo" `
+    `python 2utf.py` or `python 2utf.py -d "/path/to/your/repo" `
     
 * Converts an individual file 
 
@@ -60,12 +59,12 @@ check `DEFAULT_CONF` in `2utf.py`
 ### 2. About file extensions
 
 You should only feed text-like files to `2utf`, while binary files (such as .exe files) **should be** left untouched. 
-However, how to distinguish? Well, we use extension names. By default, files with these extension(see DEFAULT_CONF[`check_ext`] in `2utf.py`) will be processed.
+However, how to distinguish? Well, we use extension names. By default, files with these extension(see `DEFAULT_CONF['check_ext']` in `2utf.py`) will be processed.
 Feel free to customize this list either through editing the source code or with command line arguments.
 
 ### 3. About file size limits
 
-We will ignore empty files. Also, we ignore files larger than 666MB. This is a reasonable limit. If you really wants to modify it, feel free to do so(see DEFAULT_CONF[`size_limit`] in `2utf.py`).
+We will ignore empty files. Also, we ignore files larger than 666MB. This is a reasonable limit. If you really wants to modify it, feel free to do so(see `DEFAULT_CONF['size_limit']` in `2utf.py`).
 
 ## Trivial knowledge
 
