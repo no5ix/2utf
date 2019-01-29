@@ -5,7 +5,7 @@ This lightweight tool converts text files encoded in non-UTF (such as GB2312, GB
 ## New Features
 
 - easy to use
-- support python 2.7
+- support python 2.7.15+
 - has a individual bak folder named with time info
 - exclude dir config
     
