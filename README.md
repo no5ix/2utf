@@ -28,7 +28,7 @@ ___Examples:___
 
     `python 2utf.py -d "/path/to/your/repo/a.txt"`
 
-* remove all .bak files
+* remove all bak files
 
     `python 2utf.py -c`
 
