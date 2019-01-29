@@ -28,9 +28,9 @@ DEFAULT_CONF = {
 
 def cli():
     cvt_parser = argparse.ArgumentParser(
-        description="A tool that converts non-UTF-encoded text files UTF-8 encoded files.",
+        description="A tool for converting non-UTF-encoded (such as GB2312, GBK, BIG5 encoded) files to UTF-8 or other encoding.",
         epilog=textwrap.dedent('''
-            You can use this tool to remove BOM all code files from your source code repo, 
+            You can also use this tool to remove BOM all code files from your source code repo, 
             make c++ files UTF8-compatible so that the project can be compiled on any system locale.            
             '''),
     )
@@ -77,7 +77,7 @@ def cli():
         dest='tgt_codec',
         default='utf_8',
         help=textwrap.dedent('''
-            If this command line argument is missing, we convert files to UTF-8 without BOM 
+            convert to tgt_codec encoding. If this command line argument is missing, we convert files to UTF-8 without BOM 
             '''),
     )
     tgt_group.add_argument(
@@ -110,9 +110,10 @@ def cvt_codec_main(args):
     cur_check_path = args.check_dir
     if not os.path.exists(cur_check_path):
     # if not os.path.exists(cur_check_path.replace('\\', '/')):
-        print "the path '" + cur_check_path + "' that you entered is not exists."
-        print "tip 1 : use slash / but don't use backslash \\"
-        print "tip 2 : As much as possible, use English path name"
+        print "Error !!!"
+        print "The path '" + cur_check_path + "' that you entered is not exists."
+        print "Tip 1 : Use slash / but don't use backslash \\"
+        print "Tip 2 : As much as possible, use English path name"
         return
 
     if args.clean_bak:
