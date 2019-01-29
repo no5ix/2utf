@@ -38,7 +38,7 @@ ___Examples:___
 
     `python 2utf.py "/path/to/your/repo" --nobak`
 
-* `-t` to import into other Python code. For example, converts all the file to gb2312 : 
+* `-t` to import into other other encoding. For example, converts all the file to gb2312 : 
   
     `python 2utf.py -t gb2312`
 
