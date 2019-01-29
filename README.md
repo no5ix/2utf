@@ -28,7 +28,15 @@ ___Examples:___
 
     `python 2utf.py -d "/path/to/your/repo/a.txt"`
 
-* remove all bak files
+* Changes all .php and .md files to UTF-8 encoding: 
+
+    `cvt2utf "/path/to/your/repo" -i php md`
+
+* Exclude test_dir1 and test_dir2: 
+
+    `cvt2utf "/path/to/your/repo" -e test_dir1 test_dir2`
+
+* clean all bak files
 
     `python 2utf.py -c`
 

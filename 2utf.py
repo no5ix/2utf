@@ -8,8 +8,8 @@ import shutil
 
 
 DEFAULT_CONF = {
-    'check_ext': ['txt', 'h', 'cpp'],  # files with these extension will be processed.
-    'exclude_dir_name': ['.git', '.idea', '.vs'],  # will skip these dir
+    'inc_exts': {'txt', 'h', 'cpp', 'c'},  # files with these extension will be processed.
+    'exc_dirs': {'.git', '.idea', '.vs'},  # will skip these dir
     'size_limit': 666 * 1024 ** 2,  # if the file is larger than this size limit, we could skip it. default 666MB
     'codec_chain': ['ascii', 'utf_8_sig', 'chardet'],
     # We will try elements in this list sequentially.
@@ -45,6 +45,22 @@ def cli():
         help=textwrap.dedent('''
             The path pointing to the file or directory.
         '''),
+    )
+
+    cvt_parser.add_argument(
+        '-i',
+        '--inc',
+        nargs='+',  # '+'. Just like '*', all command-line args present are gathered into a list.
+        dest='inc_exts',
+        help="The list of file extensions to be converted.",
+    )
+
+    cvt_parser.add_argument(
+        '-e',
+        '--exc',
+        nargs='+',  # '+'. Just like '*', all command-line args present are gathered into a list.
+        dest='exc_dirs',
+        help="will skip these dirs.",
     )
 
     cvt_parser.add_argument(
@@ -119,25 +135,34 @@ def cvt_codec_main(args):
     if args.clean_bak:
         clean_bak_main(cur_check_path)
     else:
+        # merging the hard-coded config with the command-line arguments
+        args.inc_exts = DEFAULT_CONF['inc_exts'] if args.inc_exts is None else set(args.inc_exts) | DEFAULT_CONF['inc_exts']
+        args.exc_dirs = DEFAULT_CONF['exc_dirs'] if args.exc_dirs is None else set(args.exc_dirs) | DEFAULT_CONF['exc_dirs']
+
         if os.path.isdir(cur_check_path):
             walk_dir(cur_check_path, args)
         else:
             convert_file(cur_check_path, args)
 
 def walk_dir(base, args):
-    ex_dir_name_list = DEFAULT_CONF['exclude_dir_name']
-    ex_dir_name_list.append(DEFAULT_CONF['bak_dir_name_prefix'])
+    ex_dir_list =  args.exc_dirs
     for root, dirs, files in os.walk(base):
         should_skip = False
-        for ex_dir_name in ex_dir_name_list:
-            if root.find(ex_dir_name) != -1:
-                should_skip = True
+        split_dir_list = root.replace(os.path.sep, '/').split('/')
+        for ex_dir_name in ex_dir_list:
+            for d in split_dir_list:
+                if d == ex_dir_name:
+                    should_skip = True
+                    break
+            if should_skip:
                 break
+        if root.find(DEFAULT_CONF['bak_dir_name_prefix']) != -1:
+            should_skip = True
         if should_skip:
             continue
         for name in files:
             extension = os.path.splitext(name)[1][1:].strip().lower()
-            if extension in DEFAULT_CONF['check_ext']:
+            if extension in args.inc_exts:
                 fullname = os.path.join(root, name)
                 try:
                     convert_file(fullname, args)
